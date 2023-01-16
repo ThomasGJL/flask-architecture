@@ -1,0 +1,8 @@
+<!doctype html>
+<title>Books</title>
+
+<ul class=entries>
+    {% for entry in entries %}
+    <li> {{ entry.name }}  <a href="{{ url_for('book.delete') }}?id={{ entry.id }}">移除</a>  {{ entry.author |safe }}
+    {% endfor %}
+</ul>

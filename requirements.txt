@@ -1,0 +1,6 @@
+Flask==2.0.2
+Flask_SQLAlchemy==2.5.1
+PyMySQL==0.9.3
+apscheduler==3.6.3
+flask-caching==2.0.2
+

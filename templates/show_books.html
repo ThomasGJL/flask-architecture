@@ -1,0 +1,8 @@
+<!doctype html>
+<title>Books</title>
+
+<ul class=entries>
+    {% for entry in entries %}
+    <li>{{ entry.tag_name }} {{ entry.name }}  {{ entry.author |safe }} </li>
+    {% endfor %}
+</ul>

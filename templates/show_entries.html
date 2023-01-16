@@ -1,8 +1,14 @@
 <!doctype html>
 <title>Books</title>
 
+{% if entries %}
 <ul class=entries>
     {% for entry in entries %}
-    <li> {{ entry.name }}  <a href="{{ url_for('book.delete') }}?id={{ entry.id }}">移除</a>  {{ entry.author |safe }}
+    <li> {{ entry.name }} {{ entry.author |safe }} <a href="{{ url_for('book.delete') }}?id={{ entry.id }}">移除</a> </li>
     {% endfor %}
+
+{% else %}
+    暂无数据
+{% endif %}
+
 </ul>

@@ -20,7 +20,7 @@ redisConfig = {
     'CACHE_REDIS_DB': '1'
 }
 cache = Cache()
-cache.init_app(app=app, config=redisConfig)
+#cache.init_app(app=app, config=redisConfig)
 
 
 def create_app():
@@ -34,7 +34,7 @@ def create_app():
     db.app = app
     db.init_app(app)
 
-    cache.set("test", "test")
+    #cache.set("test", "test")
 
     # db.drop_all()
     # 打开之后可以重新建表
@@ -44,13 +44,7 @@ def create_app():
 
     return app
 
-@app.route('/test')
-def test():
 
-    testVal = cache.get("test");
-    logging.info("testVal====" + testVal)
-
-    return testVal
 
 if __name__ == '__main__':
     create_app().run()

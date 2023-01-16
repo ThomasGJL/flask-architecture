@@ -7,8 +7,8 @@ from apps.book.models import Book, db
 
 book = Blueprint('book', __name__)
 
-
 @book.route('/show_entries')
+#@cache.cached(timeout=30)
 def show_entries():
     books = Book.query.order_by(Book.id.desc()).all()
     return render_template('show_entries.html', entries=books)

@@ -4,3 +4,4 @@ PyMySQL==0.9.3
 apscheduler==3.6.3
 flask-caching==2.0.2
 redis==4.3.4
+flask-admin==1.6.0

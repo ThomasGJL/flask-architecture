@@ -5,7 +5,7 @@ from flask import request
 
 from apps.book.models import Book, Booktag, db
 
-book = Blueprint('book', __name__)
+book = Blueprint('ebook', __name__)
 
 @book.route('/show_entries')
 def show_entries():
@@ -23,4 +23,4 @@ def delete():
     db.session.delete(entry)
     db.session.commit()
 
-    return redirect('/book/show_entries')
+    return redirect('/ebook/show_entries')

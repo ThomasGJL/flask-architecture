@@ -4,7 +4,7 @@
 {% if entries %}
 <ul class=entries>
     {% for entry in entries %}
-    <li> {{ entry.name }} {{ entry.author |safe }} <a href="{{ url_for('book.delete') }}?id={{ entry.id }}">移除</a> </li>
+    <li> {{ entry.name }} {{ entry.author |safe }} <a href="{{ url_for('ebook.delete') }}?id={{ entry.id }}">移除</a> </li>
     {% endfor %}
 
 {% else %}

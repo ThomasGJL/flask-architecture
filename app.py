@@ -3,13 +3,39 @@ import config.settings
 from flask import Flask
 from flask_caching import Cache
 
+from flask_admin import Admin, BaseView, expose, AdminIndexView
+from flask_admin.contrib.sqla import ModelView
+
 import logging
 import logging.config
 
 from apps.book.models import db
-from apps.book.views.book import book
+from apps.book.models import Book
+from apps.book.views.book import book as ebook
 
 app = Flask(__name__)
+
+
+class MyAdminIndexView(AdminIndexView):
+    @expose('/')
+    def default(self):
+        return self.render('admin_home.html')
+
+admin = Admin(app=app, name=u'后台管理系统', index_view=MyAdminIndexView(u'管理主页'))
+
+
+class BookList(ModelView):
+
+    can_create = False
+
+    column_list = ('id', 'name','author')
+    def __init__(self, session, **kwargs):
+        super(BookList, self).__init__(Book, session, **kwargs)
+
+admin.add_view(BookList(db.session, name = u'图书列表'))
+
+
+
 
 logging.config.fileConfig('logging.conf')
 
@@ -21,7 +47,6 @@ redisConfig = {
 }
 cache = Cache()
 #cache.init_app(app=app, config=redisConfig)
-
 
 def create_app():
 
@@ -36,11 +61,11 @@ def create_app():
 
     #cache.set("test", "test")
 
-    # db.drop_all()
+    #db.drop_all()
     # 打开之后可以重新建表
-    # db.create_all()
+    #db.create_all()
 
-    app.register_blueprint(book, url_prefix='/book')
+    app.register_blueprint(ebook, url_prefix='/ebook')
 
     return app
 
